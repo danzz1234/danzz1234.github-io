@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacked by DanzXploit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #00ff00;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(0, 255, 0, 0.3);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+            animation: scan 3s linear infinite;
+            z-index: 100;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            50% { top: 100%; }
+            100% { top: 0; }
+        }
+
+        .glitch {
+            position: relative;
+            text-align: center;
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 30px;
+            border-radius: 50%;
+            border: 3px solid #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 0, 1); }
+            100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #ff0000;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .message {
+            font-size: 1.5rem;
+            color: #00ff00;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+        }
+
+        .terminal {
+            margin-top: 30px;
+            width: 80%;
+            max-width: 800px;
+            height: 200px;
+            background-color: rgba(0, 20, 0, 0.8);
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            padding: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .terminal-text {
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background-color: #00ff00;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .warning {
+            position: absolute;
+            bottom: 20px;
+            color: #ff0000;
+            font-size: 1rem;
+            text-align: center;
+            width: 100%;
+            animation: warning 2s infinite;
+        }
+
+        @keyframes warning {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <canvas class="matrix-bg" id="matrix"></canvas>
+    
+    <div class="glitch">
+        <img src="https://j.top4top.io/p_3599jebt80.jpg" alt="DanzXploit Logo" class="logo">
+        <h1>HACKED BY DanzXploit</h1>
+        <div class="message">
+            Oops your web has been Hacked!!!<br>
+            Where is your security??<br>
+            Hacked by DanzXploit..
+        </div>
+    </div>
+    </html>
+<center><audio autoplay="autoplay" controls="controls" src="https://f.top4top.io/m_35992l7ho0.mp3"></audio></a></center>
+    <div class="terminal">
+        <div class="terminal-text" id="terminal-text">
+            > HACKED || DanzXploit || IS A FAMOUS HACKED BECAUSE HE HAS || HACKED 100 SCHOOL DATABASES||,,HE IS A STUDENT OF SMPN 122 JAKARTA, DanzXploit IS A DANGEROUS HACKED || GREETINGS FROM US TEAM 606 ID ||<br> 
+            <span class="cursor"></span>
+        </div>
+    </div>
+    
+    <div class="warning">
+        WARNING: SYSTEM SECURITY HAS BEEN COMPROMISED
+    </div>
+
+    <script>
+        // Matrix background effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+        const charArray = chars.split("");
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 10, 0, 0.04)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = "#00ff00";
+            ctx.font = fontSize + "px monospace";
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = charArray[Math.floor(Math.random() * charArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 35);
+        
+        // Terminal typing effect
+        const terminalText = document.getElementById('terminal-text');
+        const originalText = terminalText.innerHTML;
+        let cursorVisible = true;
+        
+        setInterval(() => {
+            cursorVisible = !cursorVisible;
+            const cursor = document.querySelector('.cursor');
+            if (cursor) {
+                cursor.style.opacity = cursorVisible ? '1' : '0';
+            }
+        }, 500);
+        
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
+<strong>
+                ID DI     <marquee behavior="alternate" scrollamount="5" style="border:1px solid;" width="80%"><font color="gold" face="courier">-=|[THANK TO : ./Aril Xd | ./R4mlanGans | ./P3500N G4NZ | Dzxly | DerizXy | Mr.DanzXploit]|=-</center></font></marquee></div>
